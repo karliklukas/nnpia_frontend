@@ -3,6 +3,7 @@ import './App.css';
 import {Main} from './components/Main';
 import {Navbar} from "./components/Navbar";
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
+import {Create} from "./components/Create";
 import {Footer} from "./components/Footer"
 
 
@@ -28,7 +29,7 @@ function App() {
 
                     <Route path="/main" component={About} />
 
-                    <Route path="/create" component={About} />
+                    <Route path="/create" component={Create} />
 
                 </Switch>
                 <Footer/>
