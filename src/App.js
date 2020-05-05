@@ -1,7 +1,9 @@
 import React from 'react';
 import './App.css';
+import {Main} from './components/Main';
+import {Navbar} from "./components/Navbar";
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
-
+import {Footer} from "./components/Footer"
 
 
 function App() {
@@ -9,9 +11,12 @@ function App() {
 
   return (
     <div className="App">
-        <Router>           
+        <Router>
+           
+                <Navbar/>
+            
                 <Switch>
-                    <Route exact path="/" component={About} />
+                    <Route exact path="/" component={Main} />
 
                     <Route path="/about" component={About} />
 

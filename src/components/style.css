@@ -1,0 +1,66 @@
+.h1{
+    font-size: 8vw;
+
+}
+.card-body{
+    /*border: #282c34 1px solid;*/
+    -webkit-box-flex: 1;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    padding: 1.25rem;
+}
+.card-title{
+    font-size: xx-large;
+}
+.btnBig{
+    color: #fff;
+    background-color: #337ab7;
+    border-color: #204d74;
+    height: 100%;
+    width: 40%;
+    display: inline-block;
+    margin-bottom: 0;
+    font-weight: 400;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    background-image: none;
+    border: 1px solid transparent;
+    padding: 6px 12px;
+    font-size: 3vw;
+    line-height: 1.42857143;
+    border-radius: 4px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.btnBig:hover {
+    color: white;
+    text-decoration: none;
+    background-color: #286090;
+}
+.inputAdd{
+    width: 80%;
+    height: calc(1.5em + .75rem + 2px);
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+@media (min-width: 576px){
+    .cardWrap{
+        width: 70%;
+        margin: 0 auto;
+    }
+}
