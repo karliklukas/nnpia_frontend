@@ -1,10 +1,14 @@
 import React from 'react';
 import './App.css';
 import {Main} from './components/Main';
+import {MainLogged} from './components/MainLogged';
 import {Navbar} from "./components/Navbar";
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
+import {Login} from "./components/Login";
+import {Registration} from "./components/Registration";
 import {Create} from "./components/Create";
 import {Footer} from "./components/Footer"
+import {Logout} from "./components/Logout"
 
 
 function App() {
@@ -13,21 +17,21 @@ function App() {
   return (
     <div className="App">
         <Router>
-           
+            <Switch>
                 <Navbar/>
-            
+            </Switch>
                 <Switch>
                     <Route exact path="/" component={Main} />
 
                     <Route path="/about" component={About} />
 
-                    <Route path="/login" component={About} />
+                    <Route path="/login" component={Login} />
 
-                    <Route path="/logout" component={About} />
+                    <Route path="/logout" component={Logout} />
 
-                    <Route path="/registration" component={About} />
+                    <Route path="/registration" component={Registration} />
 
-                    <Route path="/main" component={About} />
+                    <Route path="/main" component={MainLogged} />
 
                     <Route path="/create" component={Create} />
 
