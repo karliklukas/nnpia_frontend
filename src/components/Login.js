@@ -16,15 +16,18 @@ class Login extends React.Component {
 
     componentDidMount() {
         localStorage.clear();
+        this.props.setLoggedIn(false)
 
     }
 
     login = (e) => {
         e.preventDefault();
+
         const credentials = {username: this.state.username, password: this.state.password};
         AuthService.login(credentials).then(res => {
             if(res.data.status === 200){
                 localStorage.setItem("userInfo", JSON.stringify(res.data.result));
+                this.props.setLoggedIn(true)
                 this.props.history.push('/main');
             }else {
                 this.setState({message: res.data.message});

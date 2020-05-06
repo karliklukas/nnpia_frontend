@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import './style.css';
 
-export class AddItem extends Component {
+export class CreateItem extends Component {
     state = {
         item: ''
     }

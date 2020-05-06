@@ -6,6 +6,7 @@ export class Logout extends React.Component {
 
     componentDidMount() {
         AuthService.logOut();
+        this.props.setLoggedIn(false)
         this.props.history.push('/login');
     }
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import UserService from "../service/UserService";
+import UserService from "../service/PublicService";
 
 class Registration extends React.Component {
     constructor(props) {

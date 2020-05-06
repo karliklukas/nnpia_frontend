@@ -10,7 +10,6 @@ export class MainLogged extends Component {
         if (AuthService.getUserInfo() == null){
             this.props.history.push('/');
         }
-
     }
 
     render() {
