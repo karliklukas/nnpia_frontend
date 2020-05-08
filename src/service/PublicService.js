@@ -13,6 +13,10 @@ class PublicService {
         return axios.get(USER_API_BASE_URL + '/' + userId, AuthService.getAuthHeader());
     }
 
+    fetchStatus(cartId){
+        return axios.get(USER_API_BASE_URL+'cart/status?id='+cartId);
+    }
+
     addCart(cart) {
         return axios.post(USER_API_BASE_URL+ 'cart', cart);
     }
@@ -20,6 +24,7 @@ class PublicService {
     addUser(user) {
         return axios.post(USER_API_BASE_URL+ 'user', user);
     }
+
 
 }
 

@@ -3,6 +3,7 @@ import './style.css';
 import AuthService from "../service/AuthService";
 import CartService from "../service/CartService";
 import Pagination from "react-js-pagination";
+import {FormatDate} from "./FormatDate";
 
 
 export class ChooseList extends Component {
@@ -17,7 +18,8 @@ export class ChooseList extends Component {
             size: 0,
             carts: [],
             activePage: 1,
-            message: ''
+            message: '',
+            countWaiting: 0
         };
         this.onChangeValue = this.onChangeValue.bind(this);
         this.reloadCartList = this.reloadCartList.bind(this);
@@ -27,6 +29,11 @@ export class ChooseList extends Component {
         if (AuthService.getUserInfo() == null){
             this.props.history.push('/');
         }
+        CartService.fetchCounts()
+            .then((res) => {
+                this.setState({countWaiting: res.data.result[2]})
+            });
+
         this.reloadCartList(0,"time");
     }
 
@@ -48,25 +55,24 @@ export class ChooseList extends Component {
         this.reloadCartList(pageNumber-1,this.state.sortBy);
     }
 
-    formatDate(dateTime){
-        let date = dateTime.substr(0,10);
-        let time = dateTime.substr(11,8);
-        const [year, month, day] = [...date.split('-')]
-        const [hour, minute] = [...time.split(':')]
-
-        return day + ". " + month + ". " + year + " at " + hour + ":" + minute;
-    }
-
     takeList = (id) => {
-        CartService.takeCart(id).then(res => {
-            if (res.data.status === 200) {
-                this.handlePageChange(1);
-            } else {
-                this.setState({message: res.data.message});
-            }
+        var first = Math.floor(Math.random() * 20) + 1;
+        var second = Math.floor(Math.random() * 20) + 1;
+        var resultIs = first+second
+        var result = window.prompt("What is result of "+first+"+"+second);
+        if (result==resultIs){
+            CartService.takeCart(id).then(res => {
+                if (res.data.status === 200) {
+                    this.handlePageChange(1);
+                } else {
+                    this.setState({message: res.data.message});
+                }
 
-        });
-        console.log(id+" asd")
+            });
+        }else{
+            window.alert("Wrong answer.")
+        }
+
     }
 
     render() {
@@ -95,12 +101,16 @@ export class ChooseList extends Component {
                                 <h4>{row.senior.username} | {row.senior.city}</h4>
                             </div>
                             <div className="card-body">
-                                <p className="card-text">{row.id}Created {this.formatDate(row.time)}.<br />
+                                <p className="card-text">Created <FormatDate dateTime={row.time}/>.<br />
                                     Items in shopping list: {row.items.length}</p>
-                                <button className="btn btn-outline-primary"
-                                        onClick={() => this.takeList(row.id)}>
-                                    Take this list
-                                </button>
+                                {this.state.countWaiting < 4
+                                    ?<button className="btn btn-outline-primary"
+                                             onClick={() => this.takeList(row.id)}>
+                                        Take this list
+                                    </button>
+                                    :<h5>Sorry, you have too much waiting lists.</h5>
+                                }
+
                             </div>
                         </div>
                 ))

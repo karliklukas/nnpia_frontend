@@ -10,10 +10,14 @@ import {Create} from "./components/Create";
 import {Footer} from "./components/Footer"
 import {Logout} from "./components/Logout"
 import {ChooseList} from "./components/ChooseList";
+import {ShowTaken} from "./components/ShowTaken";
+import {CheckListStatus} from "./components/CheckListStatus";
+import {EditUser} from "./components/EditUser";
+import AuthService from "./service/AuthService";
 
 
 function App() {
-    const [loggedIn, setLoggedIn] = useState(false);
+    const [loggedIn, setLoggedIn] = useState(AuthService.getUserInfo.username != null);
 
   return (
     <div className="App">
@@ -36,11 +40,23 @@ function App() {
 
                     <Route path="/registration" component={Registration} />
 
+                    <Route path="/edit" component={EditUser} />
+
                     <Route path="/main" component={MainLogged} />
 
                     <Route path="/create" component={Create} />
 
+                    <Route path="/czech" component={CheckListStatus} />
+
                     <Route path="/choose" component={ChooseList} />
+
+                    <Route path="/showDone" render={
+                        (routeProps) => <ShowTaken {...routeProps} done={true} />
+                    } />
+
+                    <Route path="/showWait" render={
+                        (routeProps) => <ShowTaken {...routeProps} done={false} />
+                    } />
 
                 </Switch>
                 <Footer/>

@@ -24,6 +24,9 @@ export class Navbar extends Component {
                                 <Link className="nav-link" to="/create">Create list</Link>
                             </li>
                             <li className="nav-item">
+                                <Link className="nav-link" to="/czech">Check list status</Link>
+                            </li>
+                            <li className="nav-item">
                                 <Link className="nav-link" to="/about">About</Link>
                             </li>
                         </ul>
@@ -35,13 +38,13 @@ export class Navbar extends Component {
                                 <Link className="nav-link" to="/main">Main page</Link>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link" href="/choose">Choose new</Link>
+                                <Link className="nav-link" to="/choose">Choose new</Link>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link" href="/showDone">Show done</Link>
+                                <Link className="nav-link" to="/showDone">Show done</Link>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link" href="/showWait">Show waiting</Link>
+                                <Link className="nav-link" to="/showWait">Show waiting</Link>
                             </li>
                         </ul>
                     }
@@ -49,6 +52,7 @@ export class Navbar extends Component {
 
                 {this.props.loggedIn ?
                     <ul className="nav navbar-nav navbar-right">
+                        <li className="nav-item"><Link className="nav-link" to="/edit">Edit</Link></li>
                         <li className="nav-item"><Link className="nav-link" to="/logout">Logout</Link></li>
                     </ul>
                     :<ul className="nav navbar-nav navbar-right">

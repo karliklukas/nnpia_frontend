@@ -1,5 +1,5 @@
 import React from 'react';
-import UserService from "../service/PublicService";
+import PublicService from "../service/PublicService";
 
 class Registration extends React.Component {
     constructor(props) {
@@ -22,7 +22,7 @@ class Registration extends React.Component {
     register = (e) => {
         e.preventDefault();
         const user = {username: this.state.username, password: this.state.password, email: this.state.email};
-        UserService.addUser(user).then(res => {
+        PublicService.addUser(user).then(res => {
             if(res.data.status === 200){
                 this.props.history.push('/login');
             }else {
@@ -74,7 +74,7 @@ class Registration extends React.Component {
                     <div className="form-group row">
                         <label className="col-sm-2 col-form-label">Password</label>
                         <div className="col-sm-10">
-                            <input type="password" placeholder="Password" className="form-control" value={this.state.password} onChange={this.handleChangePass}
+                            <input type="password" placeholder="Password" minLength="6" className="form-control" value={this.state.password} onChange={this.handleChangePass}
                                    required/>
                         </div>
 

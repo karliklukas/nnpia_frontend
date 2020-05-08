@@ -94,7 +94,7 @@ class Create extends React.Component {
                 <form onKeyPress={this.onKeyPress} onSubmit={this.handleSubmitCart}>
                     <h2 className="text-danger">{this.state.message}</h2>
                     <div className="form-group row">
-                        <label className="col-sm-2 col-form-label">Username</label>
+                        <label className="col-sm-2 col-form-label">Your name</label>
                         <div className="col-sm-10">
                             <input type="text" className="form-control" onChange={this.handleChangeUser}
                                    value={this.state.username}
