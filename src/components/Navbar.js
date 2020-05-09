@@ -27,6 +27,9 @@ export class Navbar extends Component {
                                 <Link className="nav-link" to="/czech">Check list status</Link>
                             </li>
                             <li className="nav-item">
+                                <Link className="nav-link" to="/top">Hall of fame</Link>
+                            </li>
+                            <li className="nav-item">
                                 <Link className="nav-link" to="/about">About</Link>
                             </li>
                         </ul>

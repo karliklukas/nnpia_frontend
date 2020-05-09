@@ -13,6 +13,7 @@ import {ChooseList} from "./components/ChooseList";
 import {ShowTaken} from "./components/ShowTaken";
 import {CheckListStatus} from "./components/CheckListStatus";
 import {EditUser} from "./components/EditUser";
+import {TopUsers} from "./components/TopUsers";
 import AuthService from "./service/AuthService";
 
 
@@ -49,6 +50,8 @@ function App() {
                     <Route path="/czech" component={CheckListStatus} />
 
                     <Route path="/choose" component={ChooseList} />
+
+                    <Route path="/top" component={TopUsers} />
 
                     <Route path="/showDone" render={
                         (routeProps) => <ShowTaken {...routeProps} done={true} />

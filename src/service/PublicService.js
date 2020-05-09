@@ -1,20 +1,16 @@
 import axios from 'axios';
-import AuthService from './AuthService';
 
 const USER_API_BASE_URL = 'http://localhost:8080/public/';
 
 class PublicService {
 
-    fetchUsers() {
-        return axios.get(USER_API_BASE_URL, AuthService.getAuthHeader());
-    }
-
-    fetchUserById(userId) {
-        return axios.get(USER_API_BASE_URL + '/' + userId, AuthService.getAuthHeader());
-    }
 
     fetchStatus(cartId){
         return axios.get(USER_API_BASE_URL+'cart/status?id='+cartId);
+    }
+
+    getTopUsers(){
+        return axios.get(USER_API_BASE_URL+'cart/top')
     }
 
     addCart(cart) {
