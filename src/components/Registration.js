@@ -60,21 +60,21 @@ class Registration extends React.Component {
                     <div className="form-group row">
                         <label className="col-sm-2 col-form-label">Username</label>
                         <div className="col-sm-10">
-                            <input type="text" className="form-control" value={this.state.username} onChange={this.handleChangeUser}
+                            <input type="text" className="form-control" name="username" value={this.state.username} onChange={this.handleChangeUser}
                                    placeholder="Enter username" required/>
                         </div>
                     </div>
                     <div className="form-group row">
                         <label className="col-sm-2 col-form-label">Email address</label>
                         <div className="col-sm-10">
-                            <input type="email" className="form-control" value={this.state.email} onChange={this.handleChangeEmail}
+                            <input type="email" className="form-control" name="email" value={this.state.email} onChange={this.handleChangeEmail}
                                    placeholder="Enter email" required/>
                         </div>
                     </div>
                     <div className="form-group row">
                         <label className="col-sm-2 col-form-label">Password</label>
                         <div className="col-sm-10">
-                            <input type="password" placeholder="Password" minLength="6" className="form-control" value={this.state.password} onChange={this.handleChangePass}
+                            <input type="password" placeholder="Password" name="password" minLength="6" className="form-control" value={this.state.password} onChange={this.handleChangePass}
                                    required/>
                         </div>
 

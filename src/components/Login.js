@@ -59,14 +59,14 @@ class Login extends React.Component {
                     <div className="form-group row">
                         <label className="col-sm-2 col-form-label">Username</label>
                         <div className="col-sm-10">
-                        <input type="text" className="form-control" placeholder="Enter username"
+                        <input type="text" className="form-control" placeholder="Enter username" name="username"
                                value={this.state.username} onChange={this.handleChangeUser} required={ true }/>
                         </div>
                     </div>
                     <div className="form-group row">
                         <label className="col-sm-2 col-form-label">Password</label>
                         <div className="col-sm-10">
-                            <input type="password" className="form-control" placeholder="Password"
+                            <input type="password" className="form-control" placeholder="Password" name="password"
                                    value={this.state.password} onChange={this.handleChangePass} required={ true }/>
                         </div>
 
