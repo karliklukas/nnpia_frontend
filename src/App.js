@@ -18,7 +18,7 @@ import AuthService from "./service/AuthService";
 
 
 function App() {
-    const [loggedIn, setLoggedIn] = useState(AuthService.getUserInfo.username != null);
+    const [loggedIn, setLoggedIn] = useState(AuthService.getUserInfo() !== null);
 
   return (
     <div className="App">

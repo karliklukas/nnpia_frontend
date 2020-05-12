@@ -4,24 +4,26 @@ import AuthService from "../service/AuthService";
 import CartService from "../service/CartService";
 import Pagination from "react-js-pagination";
 import {FormatDate} from "./FormatDate";
+import {SorterBar} from "./SorterBar";
 
+const options = [{key: "time", label: "Time"}, {key: "senior.city", label: "City"}]
 
 export class ChooseList extends Component {
 
     constructor() {
         super();
         this.state = {
-            name: "",
             pageNo: 0,
             pageSize: 3,
-            sortBy: "time",
+            sortBy: "idcart",
+            sortType: "asc",
             size: 0,
             carts: [],
-            activePage: 1,
             message: '',
-            countWaiting: 0
+            countWaiting: 0,
         };
         this.onChangeValue = this.onChangeValue.bind(this);
+        this.onChangeValueType = this.onChangeValueType.bind(this);
         this.reloadCartList = this.reloadCartList.bind(this);
     }
 
@@ -31,28 +33,33 @@ export class ChooseList extends Component {
         }
         CartService.fetchCounts()
             .then((res) => {
-                this.setState({countWaiting: res.data.result[2]})
+                this.setState({countWaiting:res.data.result.countWait})
             });
 
-        this.reloadCartList(0,"time");
+        this.reloadCartList(0,"idcart");
     }
 
     reloadCartList(page, sort) {
         CartService.fetchCarts(page,this.state.pageSize,sort)
             .then((res) => {
-                this.setState({carts: res.data.result, size: parseInt(res.data.message , 10 )})
+                this.setState({carts: res.data.result.list, size: res.data.result.totalElements})
             });
 
     }
 
     onChangeValue(event) {
-        this.setState({sortBy: event.target.value, pageNo: 0, activePage: 1});
-        this.reloadCartList(0 ,event.target.value);
+        this.setState({sortBy: event.target.value, pageNo: 0});
+        this.reloadCartList(0 ,event.target.value+","+this.state.sortType);
+    }
+
+    onChangeValueType(event) {
+        this.setState({sortType: event.target.value,pageNo: 0});
+        this.reloadCartList(0 ,this.state.sortBy+","+event.target.value);
     }
 
     handlePageChange(pageNumber) {
-        this.setState({pageNo: pageNumber-1, activePage: pageNumber});
-        this.reloadCartList(pageNumber-1,this.state.sortBy);
+        this.setState({pageNo: pageNumber-1});
+        this.reloadCartList(pageNumber-1,this.state.sortBy+","+this.state.sortType);
     }
 
     takeList = (id) => {
@@ -67,7 +74,6 @@ export class ChooseList extends Component {
                 } else {
                     this.setState({message: res.data.message});
                 }
-
             });
         }else{
             window.alert("Wrong answer.")
@@ -80,19 +86,9 @@ export class ChooseList extends Component {
             <div className="cardWrap">
             <h4>Choose some list</h4>
             <h5 className="text-danger">{this.state.message}</h5>
-            <div onChange={this.onChangeValue}>
-                <div className="form-check form-check-inline">
-                    <input type="radio" value="time" className="form-check-input" name="sort" checked={this.state.sortBy === 'time'} readOnly/>
-                    <label className="form-check-label" htmlFor="inlineCheckbox2">Oldest</label>
-                </div>
-                <div className="form-check form-check-inline">
-                    <input type="radio" value="timeDesc" className="form-check-input" name="sort" checked={this.state.sortBy === 'timeDesc'} readOnly/>
-                        <label className="form-check-label" htmlFor="inlineCheckbox1">Newest</label>
-                </div>
-                <div className="form-check form-check-inline">
-                    <input type="radio" value="city" className="form-check-input" name="sort" checked={this.state.sortBy === 'city'} readOnly/>
-                        <label className="form-check-label" htmlFor="inlineCheckbox3">City</label>
-                </div>
+            <div>
+                <SorterBar sortType={this.state.sortType} onChangeType={this.onChangeValueType}
+                           sortBy={this.state.sortBy} onChangeBy={this.onChangeValue} data={options}/>
             </div>
                 {this.state.carts.length
                     ?this.state.carts.map(row => (
@@ -117,7 +113,7 @@ export class ChooseList extends Component {
                 :<p>None</p>
                 }
                 <Pagination
-                    activePage={this.state.activePage}
+                    activePage={this.state.pageNo+1}
                     itemsCountPerPage={this.state.pageSize}
                     totalItemsCount={this.state.size}
                     pageRangeDisplayed={5}

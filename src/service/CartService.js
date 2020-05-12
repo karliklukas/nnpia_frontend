@@ -6,11 +6,11 @@ const USER_API_BASE_URL = 'http://localhost:8080/api/cart';
 class CartService {
 
     fetchCarts(pageNo, pageSize, sortBy) {
-        return axios.get(USER_API_BASE_URL+ '/p?pageSize=' + pageSize+'&pageNo=' + pageNo+'&sortBy=' + sortBy, AuthService.getAuthHeader());
+        return axios.get(USER_API_BASE_URL+ '?size=' + pageSize+'&page=' + pageNo+'&sort=' + sortBy, AuthService.getAuthHeader());
     }
 
     fetchCartsByUser(pageNo, pageSize, sortBy, userId, done) {
-        return axios.get(USER_API_BASE_URL+ '/p?pageSize=' + pageSize+'&pageNo=' + pageNo+'&sortBy=' + sortBy
+        return axios.get(USER_API_BASE_URL+ '?size=' + pageSize+'&page=' + pageNo+'&sort=' + sortBy
             +'&userId=' + userId+'&done=' + done, AuthService.getAuthHeader());
     }
 

@@ -76,7 +76,7 @@ class Create extends React.Component {
                         city: '',
                         index: 1,
                         seniorId: null,
-                        message: res.data.message
+                        message: res.data.result
                     });
                 } else {
                     this.setState({message: res.data.message});

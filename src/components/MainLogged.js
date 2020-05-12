@@ -23,7 +23,7 @@ export class MainLogged extends Component {
 
         CartService.fetchCounts()
             .then((res) => {
-                this.setState({countFree: res.data.result[0], countDone: res.data.result[1],countWaiting: res.data.result[2]})
+                this.setState({countFree: res.data.result.countFree, countDone: res.data.result.countDone, countWaiting: res.data.result.countWait})
             });
 
     }
