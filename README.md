@@ -2,9 +2,27 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## NNPIA semestrální práce - frontend
 
-Napsáno v reactJs
+Napsáno v ReactJs. Dále bylo využito React-router pro navigaci, axios pro komunikaci s backendem a bootstrap pro css styly. 
 
 Nasazena na platformě [vercel](https://nnpia-karlik.now.sh/)
+
+#### Téma
+Tématem semestrální práce bylo napsání aplikace jež by mohla složit seniorům k zjednodušení jejich nakupování.
+Cílem bylo vytvoření takové aplikace jež dovolí nepřihlášenému uživateli (senior) vytvoření nákupního seznamu, který
+si pak bude moct vybrat některý z přihlášených uživatelů. Komunikace je předpokládána přes email. Z tohoto důvodu
+také backend zasílá emailové zprávy seniorům, aby byli dostatečně informováni. Také v aplikaci je pak možné zjistit stav seznamu.
+
+#### Spuštění
+- cd do složky tohoto projektu
+- npm install 
+- npm start
+
+Projekt je nastavený pro připojení na backend, který je na platformě [heroku](https://nnpia.herokuapp.com/). Pro připojení například na localhost je třeba změnit adresu v servisních třídách.
+
+#### Kód
+Rozdělní kódu do balíčků 
+- components - obsahuje všechny komponenty ze, kterých se skládá web
+- service - obsahuje třídy starající se o komunikaci s API
 
 ### `npm start`
 
